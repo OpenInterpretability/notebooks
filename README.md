@@ -50,6 +50,17 @@
 |---|---|
 | [`13_watchtower_preview.ipynb`](./notebooks/13_watchtower_preview.ipynb) | Monitor input prompts for anomalous feature activations. Q1 preview of Q4 Watchtower Enterprise. Forward-only, no generation. |
 
+## Circuits — attribution graphs between SAE features
+
+| Notebook | What it does |
+|---|---|
+| [`14_attribution_patching.ipynb`](./notebooks/14_attribution_patching.ipynb) | **AtP\* recipe** (Kramár 2024) with QK-fix + GradDrop on user's SAE. Node attribution. Emits `feature_attribution.json` in the Circuit Canvas schema. |
+| [`15_sparse_feature_circuits.ipynb`](./notebooks/15_sparse_feature_circuits.ipynb) | **Marks et al. 2024 replication** (arxiv:2403.19647). Node + edge attribution, IG-10 fallback for early layers, SAE error terms as triangle nodes. |
+| [`16_autocircuit_acdc.ipynb`](./notebooks/16_autocircuit_acdc.ipynb) | **ACDC slow-mode** via AutoCircuit (UFO-101). Independent verification against the original NeurIPS 2023 algorithm. |
+| [`17_train_crosscoder.ipynb`](./notebooks/17_train_crosscoder.ipynb) | **Sparse Crosscoder** (Lindsey et al. 2024). Single shared-dictionary SAE across 3+ residual layers — ties multi-layer features into one feature index. Greenfield: not yet in SAELens. |
+
+All circuit notebooks emit JSON that is consumed directly by the [**Circuit Canvas**](https://openinterp.org/observatory/circuits) visualizer on openinterp.org.
+
 ---
 
 ## Quick start — open any notebook directly
