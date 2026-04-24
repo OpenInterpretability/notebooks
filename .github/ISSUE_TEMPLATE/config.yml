@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 💬 Discussions
+    url: https://github.com/OpenInterpretability/notebooks/discussions
+    about: Design questions, "which notebook should I use for X?"
+  - name: 📚 /train on openinterp.org
+    url: https://openinterp.org/train
+    about: Browse the full notebook library.
