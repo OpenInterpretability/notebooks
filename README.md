@@ -61,6 +61,27 @@
 
 All circuit notebooks emit JSON that is consumed directly by the [**Circuit Canvas**](https://openinterp.org/observatory/circuits) visualizer on openinterp.org.
 
+## Leaderboard — InterpScore v0.0.1
+
+| Notebook | What it does |
+|---|---|
+| [`18_interpscore_eval.ipynb`](./notebooks/18_interpscore_eval.ipynb) | Composite SAE ranking: loss recovered + alive features + L0 sweet spot + sparse probing + TPP. Emits `interpscore.json` — PR it to the public leaderboard at [openinterp.org/interpscore](https://openinterp.org/interpscore). |
+
+## Lenses — classic layer-wise prediction tools
+
+| Notebook | Method |
+|---|---|
+| [`19_logit_lens.ipynb`](./notebooks/19_logit_lens.ipynb) | Logit Lens (nostalgebraist 2020). 5 lines of PyTorch, ~5 min on T4. |
+| [`20_tuned_lens.ipynb`](./notebooks/20_tuned_lens.ipynb) | Tuned Lens (Belrose 2023). Tries pretrained first; fresh-fits on Pile if needed. |
+
+## Probing — the supervised baselines SAE features must beat
+
+| Notebook | Method |
+|---|---|
+| [`21_linear_probe.ipynb`](./notebooks/21_linear_probe.ipynb) | Logistic regression on residuals + **diff-of-means baseline** (Farquhar 2023 requires it). |
+| [`22_ccs_probe.ipynb`](./notebooks/22_ccs_probe.ipynb) | Contrast Consistent Search (Burns 2022), with honest comparison against diff-of-means and supervised LR ceiling. |
+| [`23_repe_reading_vector.ipynb`](./notebooks/23_repe_reading_vector.ipynb) | Representation Engineering LAT (Zou 2023). Extract a concept direction from 32 contrast pairs; monitor + steer with it. |
+
 ---
 
 ## Quick start — open any notebook directly
