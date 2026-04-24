@@ -5,7 +5,7 @@
 ### From `pip install transformers` to your own paper-grade SAE — 23 Colab / Kaggle / cloud notebooks covering every step.
 
 [![openinterp.org/train](https://img.shields.io/badge/site-openinterp.org%2Ftrain-8b5cf6)](https://openinterp.org/train)
-[![License MIT](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
+[![License Apache 2.0](https://img.shields.io/badge/license-Apache%202.0-green)](./LICENSE)
 [![Notebooks](https://img.shields.io/badge/notebooks-23-f97316)](./notebooks)
 [![Discussions](https://img.shields.io/github/discussions/OpenInterpretability/notebooks)](https://github.com/OpenInterpretability/notebooks/discussions)
 [![Good first issues](https://img.shields.io/github/issues/OpenInterpretability/notebooks/good%20first%20issue)](https://github.com/OpenInterpretability/notebooks/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22)
@@ -230,4 +230,4 @@ Your SAE is an asset. Put it to work:
 - [Bussmann et al. 2024](https://arxiv.org/abs/2412.06410) · BatchTopK
 - [Neuronpedia](https://neuronpedia.org) · the SAE encyclopedia
 
-MIT License · [openinterp.org](https://openinterp.org) · 2026
+Apache-2.0 · [openinterp.org](https://openinterp.org) · 2026
