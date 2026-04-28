@@ -2,11 +2,11 @@
 
 # OpenInterpretability · `notebooks`
 
-### From `pip install transformers` to your own paper-grade SAE — 23 Colab / Kaggle / cloud notebooks covering every step.
+### From `pip install transformers` to your own paper-grade SAE — 31 Colab / Kaggle / cloud notebooks covering training, hallucination research, crosscoders, and product reproducers.
 
 [![openinterp.org/train](https://img.shields.io/badge/site-openinterp.org%2Ftrain-8b5cf6)](https://openinterp.org/train)
 [![License Apache 2.0](https://img.shields.io/badge/license-Apache%202.0-green)](./LICENSE)
-[![Notebooks](https://img.shields.io/badge/notebooks-23-f97316)](./notebooks)
+[![Notebooks](https://img.shields.io/badge/notebooks-31-f97316)](./notebooks)
 [![Discussions](https://img.shields.io/github/discussions/OpenInterpretability/notebooks)](https://github.com/OpenInterpretability/notebooks/discussions)
 [![Good first issues](https://img.shields.io/github/issues/OpenInterpretability/notebooks/good%20first%20issue)](https://github.com/OpenInterpretability/notebooks/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22)
 
@@ -20,7 +20,7 @@
 |---|---|
 | [`.github`](https://github.com/OpenInterpretability/.github) | Org profile + shared CoC + SECURITY |
 | [`web`](https://github.com/OpenInterpretability/web) | Next.js site behind openinterp.org |
-| **`notebooks`** (you are here) | 23 training + interpretability notebooks |
+| **`notebooks`** (you are here) | 31 training + interpretability + product-reproducer notebooks |
 | [`cli`](https://github.com/OpenInterpretability/cli) | `pip install openinterp` — Python SDK |
 | [`mechreward`](https://github.com/OpenInterpretability/mechreward) | SAE features as dense RL reward |
 
@@ -100,6 +100,50 @@ All circuit notebooks emit JSON consumed directly by the [**Circuit Canvas**](ht
 | [`21_linear_probe.ipynb`](./notebooks/21_linear_probe.ipynb) | sklearn LogisticRegression on residuals + **diff-of-means baseline** (Farquhar 2023 requires it) |
 | [`22_ccs_probe.ipynb`](./notebooks/22_ccs_probe.ipynb) | Contrast Consistent Search (Burns 2022) with honest critique baselines |
 | [`23_repe_reading_vector.ipynb`](./notebooks/23_repe_reading_vector.ipynb) | Representation Engineering LAT (Zou 2023) — extract + monitor + steer |
+
+## 🌀 Hallucination — detection & steering arc
+
+The full research arc behind the [2026-04-25 blog post](https://openinterp.org/blog) on hallucination
+in 27B reasoning models. Notebooks 24 → 28b shipped 2026-04-25 → 26.
+
+| Notebook | What it does |
+|---|---|
+| [`24_hallucination_entity_separation_qwen36_27b.ipynb`](./notebooks/24_hallucination_entity_separation_qwen36_27b.ipynb) | v0.0.1 — fake AUROC=1.0 from a 2× tokenization confound. The honest negative result. |
+| [`24b_hallucination_v002_ferrando_proper.ipynb`](./notebooks/24b_hallucination_v002_ferrando_proper.ipynb) | Ferrando 2024 replication on Qwen3.6-27B. **AUROC 0.84 on 226 real Wikidata entities.** |
+| [`25_steering_f61723_calibration.ipynb`](./notebooks/25_steering_f61723_calibration.ipynb) | Single-feature steering null result. Detection ≠ control. |
+| [`26_multi_feature_steering.ipynb`](./notebooks/26_multi_feature_steering.ipynb) | Multi-feature top-K (no controls). The version we almost shipped overclaimed. |
+| [`27_multi_feature_steering_with_controls.ipynb`](./notebooks/27_multi_feature_steering_with_controls.ipynb) | The walk-back. 6 controls (random-K + Claude judge + permutation). **It induces hallucination, not calibration.** |
+| [`28_paper_baselines_qwen36_27b.ipynb`](./notebooks/28_paper_baselines_qwen36_27b.ipynb) | ICML MI Workshop 2026 paper-1 baselines. **L31/f34957 0.81 vs LR ceiling 0.887 vs diff-of-means 0.859.** Per-layer scan, bootstrap CI. |
+| [`28b_sensitivity_refusal_only.ipynb`](./notebooks/28b_sensitivity_refusal_only.ipynb) | Sensitivity ablation — same residual capture, two labelling rules. Reviewer-defence. |
+
+## 🔀 Crosscoders — cross-model + cross-stage
+
+The methodology behind paper-1's Pearson causal-equivalence (`Pearson_CE`) finding.
+First per-feature causal-equivalence test in the crosscoder literature.
+
+| Notebook | What it does | Pair |
+|---|---|---|
+| [`17_train_crosscoder.ipynb`](./notebooks/17_train_crosscoder.ipynb) | Cross-LAYER crosscoder (Lindsey 2024). Single model, multi-layer. | Gemma-2-2B L6/L12/L18 |
+| [`17b_crosscoder_model_diff_papergrade.ipynb`](./notebooks/17b_crosscoder_model_diff_papergrade.ipynb) | Cross-MODEL crosscoder + Pearson_CE. **Median cosine 0.965 vs CE 0.616 — 38% gap.** | Gemma-2-2B base/IT |
+| [`17c_crosscoder_rl_diffing_papergrade.ipynb`](./notebooks/17c_crosscoder_rl_diffing_papergrade.ipynb) | Cross-STAGE crosscoder. LoRA toggle pattern (single base + PEFT.disable_adapter). | Qwen3.5-4B base vs mechreward-G3 |
+
+## 🛡️ Guards — product reproducers
+
+Each notebook reproduces an exact metric behind a shipped openinterp Guard
+(SDK on PyPI, demo on HF, landing on openinterp.org/products/X).
+**Drop-in `pip install openinterp` and you have these probes.**
+
+| Notebook | Product | Headline number | Reproducer |
+|---|---|---|---|
+| [`30_hallucinationguard_proof_qwen36_27b.ipynb`](./notebooks/30_hallucinationguard_proof_qwen36_27b.ipynb) | FabricationGuard PoC v1 | Single-feature failed cross-bench (0.50–0.60) | [Open in Colab](https://colab.research.google.com/github/OpenInterpretability/notebooks/blob/main/notebooks/30_hallucinationguard_proof_qwen36_27b.ipynb) |
+| [`31_hallucinationguard_v2_linear_probe.ipynb`](./notebooks/31_hallucinationguard_v2_linear_probe.ipynb) | **FabricationGuard v2** (production) | **AUROC 0.88 cross-task · −88% confident-wrong** | [Open in Colab](https://colab.research.google.com/github/OpenInterpretability/notebooks/blob/main/notebooks/31_hallucinationguard_v2_linear_probe.ipynb) |
+| [`32_reasoningguard_proof_qwen36_27b.ipynb`](./notebooks/32_reasoningguard_proof_qwen36_27b.ipynb) | ReasoningGuard PoC | TBD — passes 3/3 ships v0.3 | [Open in Colab](https://colab.research.google.com/github/OpenInterpretability/notebooks/blob/main/notebooks/32_reasoningguard_proof_qwen36_27b.ipynb) |
+
+Each reproducer ships:
+- `probe.joblib` + `meta.json` to HF dataset (drop-in for the SDK)
+- `verdict.json` with raw numbers
+- `headline.png` for landing pages / posts
+- All artifacts pushed to `caiovicentino1/<ProductName>-linearprobe-qwen36-27b` (HF dataset)
 
 ---
 
