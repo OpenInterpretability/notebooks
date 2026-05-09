@@ -1,0 +1,38 @@
+[
+  {
+    "name": "L39",
+    "label": "WORST-4 (regressing)",
+    "dec_norm_mean": 1.002640962600708,
+    "dec_norm_std": 0.0009993889834731817,
+    "pseudo_dead_dec": 0,
+    "near_unit_dec": 40960,
+    "enc_norm_mean": 1.0618460178375244,
+    "enc_norm_std": 0.06941737234592438,
+    "b_enc_mean": -0.0198247991502285,
+    "b_enc_min": -0.05859375,
+    "frac_b_enc_strongly_neg": 0.0,
+    "effective_rank_99": 3871,
+    "effective_rank_95": 3374,
+    "off_diag_cos_mean": 0.0003560722107067704,
+    "frac_high_cos": 0.0,
+    "frac_dup_cos": 0.0
+  },
+  {
+    "name": "L51",
+    "label": "NOT in worst-4 (healthier)",
+    "dec_norm_mean": 1.0020999908447266,
+    "dec_norm_std": 0.0013509474229067564,
+    "pseudo_dead_dec": 0,
+    "near_unit_dec": 40960,
+    "enc_norm_mean": 1.042751669883728,
+    "enc_norm_std": 0.06660022586584091,
+    "b_enc_mean": -0.018567996099591255,
+    "b_enc_min": -0.0625,
+    "frac_b_enc_strongly_neg": 0.0,
+    "effective_rank_99": 3873,
+    "effective_rank_95": 3379,
+    "off_diag_cos_mean": 0.00037146414979361,
+    "frac_high_cos": 0.0,
+    "frac_dup_cos": 0.0
+  }
+]

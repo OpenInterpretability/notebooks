@@ -33,3 +33,5 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+applications/pgac/sae_inspect/*.safetensors
+*.safetensors
