@@ -114,7 +114,10 @@ def build():
 
     cells.append(code([
         "# 1.2 — Install deps if missing (Colab)",
-        "!pip install -q transformers==4.45 accelerate sentencepiece datasets",
+        "# Qwen3.6 (model_type='qwen3_5') requires transformers from main branch",
+        "!pip uninstall -y -q transformers",
+        "!pip install -q --upgrade git+https://github.com/huggingface/transformers.git accelerate sentencepiece datasets scipy",
+        "print('⚠️  Restart runtime after this cell (Runtime → Restart session), then re-run from cell 1.')",
     ]))
 
     cells.append(code([
